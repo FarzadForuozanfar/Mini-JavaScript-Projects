@@ -63,7 +63,7 @@ function complete() {
 
 function newQuote(serverId = null) {
     serverId = !serverId ? Application.getServerApiOnLoaclStorage().id : serverId;
-    const quote = serverId === SERVER_2.id ? {text:apiQuotes.quote.body, author:apiQuotes.quote.author} : {text: apiQuotes.quoteText, author: apiQuotes.quoteAuthor};
+    const quote = serverId === SERVER_2.id ? { text: apiQuotes.quote.body, author: apiQuotes.quote.author } : { text: apiQuotes.quoteText, author: apiQuotes.quoteAuthor };
     if (quote.text.length > 50) {
         quoteText.classList.add('long-quote');
     } else {
@@ -85,8 +85,9 @@ function getQuotes(server) {
         .catch(err => {
             setTimeout(() => {
                 getQuotes(server);
-            },15000);
+            }, 500);
             console.error(err);
+            alert(err);
         });
     complete();
 }
@@ -103,7 +104,10 @@ document.addEventListener("click", function (event) {
     }
 });
 twittrBtn.addEventListener('click', tweetQuote);
-newQuoteBtn.addEventListener('click', newQuote);
+newQuoteBtn.addEventListener('click', (e) => {
+    console.log(e);
+    getQuotes(Application.getServerApiOnLoaclStorage());
+});
 settingBtn.addEventListener('click', (event) => {
     settingContetn.classList.toggle('hidden');
 });
