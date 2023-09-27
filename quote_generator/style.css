@@ -34,7 +34,7 @@ body {
 }
 
 .long-quote {
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .fa-quote-left {
@@ -43,7 +43,7 @@ body {
 
 .quote-author {
     margin-top: 15px;
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 400;
     font-style: italic;
     text-align: center;
@@ -83,6 +83,25 @@ button:active {
 
 .fa-twitter {
     font-size: 1.5rem;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #1d1f21;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width: 1000px) {
