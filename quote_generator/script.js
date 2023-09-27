@@ -1,10 +1,53 @@
-//http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en, https://favqs.com/api/qotd, 
+const SERVER_1 = {
+    url: "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en",
+    id: "server-1"
+};
+const SERVER_2 = {
+    url: "https://favqs.com/api/qotd",
+    id: "server-2"
+};
+
 const quoteContainer = document.querySelector('#quote-container');
 const quoteText = document.querySelector('#quote');
 const authorText = document.querySelector('#author');
 const twittrBtn = document.querySelector('#twitter');
 const newQuoteBtn = document.querySelector('#new-quote');
 const loader = document.querySelector('#loader');
+const settingBtn = document.querySelector('#setting-btn');
+const settingContetn = document.querySelector('.setting-content');
+const radios = document.querySelectorAll('input[name="server"]');
+
+class Application {
+    constructor() {
+        this.server = Application.checkLocalStorage();
+    }
+
+    static checkLocalStorage() {
+        let server = Application.getServerApiOnLoaclStorage();
+        if (!server) {
+            server = Application.setServerApiOnLoaclStorage(SERVER_2);
+        }
+        return server;
+    }
+
+    static getServerApiOnLoaclStorage() {
+        return JSON.parse(localStorage.getItem('server'));
+    }
+
+    static setServerApiOnLoaclStorage(server) {
+        localStorage.setItem('server', JSON.stringify(server));
+    }
+
+    getAppServerApi() {
+        return this.server;
+    }
+
+    setAppServerApi(server) {
+        this.server = server;
+        Application.setServerApiOnLoaclStorage(server);
+    }
+}
+const app = new Application();
 
 let apiQuotes = [];
 
@@ -13,15 +56,14 @@ function loading() {
     quoteContainer.hidden = true;
 }
 
-function complete(){
+function complete() {
     loader.hidden = true;
     quoteContainer.hidden = false;
 }
 
-function newQuote() {
-    loading();
-    const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-
+function newQuote(serverId = null) {
+    serverId = !serverId ? Application.getServerApiOnLoaclStorage().id : serverId;
+    const quote = serverId === SERVER_2.id ? {text:apiQuotes.quote.body, author:apiQuotes.quote.author} : {text: apiQuotes.quoteText, author: apiQuotes.quoteAuthor};
     if (quote.text.length > 50) {
         quoteText.classList.add('long-quote');
     } else {
@@ -29,22 +71,24 @@ function newQuote() {
     }
     quoteText.textContent = quote.text;
     authorText.textContent = quote.author == 'type.fit' ? 'UnKnown' : quote.author.split(',')[0];
-    complete();
 }
 
-function getQuotes() {
+function getQuotes(server) {
     loading();
-    const apiUrl = 'https://type.fit/api/quotes';
+    const apiUrl = server.url;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             apiQuotes = data;
-            newQuote();
-            complete();
+            newQuote(server.id);
         })
         .catch(err => {
-            alert(err);
+            setTimeout(() => {
+                getQuotes(server);
+            },15000);
+            console.error(err);
         });
+    complete();
 }
 
 function tweetQuote() {
@@ -52,7 +96,29 @@ function tweetQuote() {
     window.open(twitterUrl, '_blank');
 }
 
+// Event Listeners
+document.addEventListener("click", function (event) {
+    if (!settingBtn.contains(event.target) && !settingContetn.contains(event.target) && !document.querySelector(".setting-content span").contains(event.target) && !document.querySelector("input").contains(event.target)) {
+        settingContetn.classList.add('hidden');
+    }
+});
 twittrBtn.addEventListener('click', tweetQuote);
 newQuoteBtn.addEventListener('click', newQuote);
-
-getQuotes();
+settingBtn.addEventListener('click', (event) => {
+    settingContetn.classList.toggle('hidden');
+});
+radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+        if (radio.checked) {
+            if (radio.id === SERVER_1.id) {
+                app.setAppServerApi(SERVER_1);
+            }
+            else if (radio.id === SERVER_2.id) {
+                app.setAppServerApi(SERVER_2);
+            }
+        }
+    });
+});
+// End Event Listeners
+getQuotes(Application.getServerApiOnLoaclStorage());
+document.getElementById(app.getAppServerApi().id).checked = true;
