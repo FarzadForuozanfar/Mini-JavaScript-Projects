@@ -17,48 +17,20 @@ const settingBtn = document.querySelector('#setting-btn');
 const settingContetn = document.querySelector('.setting-content');
 const radios = document.querySelectorAll('input[name="server"]');
 
-class Application {
-    constructor() {
-        this.server = Application.checkLocalStorage();
-    }
-
-    static checkLocalStorage() {
-        let server = Application.getServerApiOnLoaclStorage();
-        if (!server) {
-            server = Application.setServerApiOnLoaclStorage(SERVER_2);
-        }
-        return server;
-    }
-
-    static getServerApiOnLoaclStorage() {
-        return JSON.parse(localStorage.getItem('server'));
-    }
-
-    static setServerApiOnLoaclStorage(server) {
-        localStorage.setItem('server', JSON.stringify(server));
-    }
-
-    getAppServerApi() {
-        return this.server;
-    }
-
-    setAppServerApi(server) {
-        this.server = server;
-        Application.setServerApiOnLoaclStorage(server);
-    }
-}
-const app = new Application();
-
 let apiQuotes = [];
 
 function loading() {
     loader.hidden = false;
+    loader.style.display = 'block';
     quoteContainer.hidden = true;
+    quoteContainer.style.display = 'none';
 }
 
 function complete() {
     loader.hidden = true;
+    loader.style.display = 'none';
     quoteContainer.hidden = false;
+    quoteContainer.style.display = 'block';
 }
 
 function newQuote(serverId = null) {
@@ -85,11 +57,11 @@ function getQuotes(server) {
         .catch(err => {
             setTimeout(() => {
                 getQuotes(server);
-            }, 500);
+            }, 2000);
             console.error(err);
             alert(err);
         });
-    complete();
+    setTimeout(complete, 200)
 }
 
 function tweetQuote() {
@@ -97,6 +69,21 @@ function tweetQuote() {
     window.open(twitterUrl, '_blank');
 }
 
+function checkLocalStorage() {
+    let server = getServerApiOnLoaclStorage();
+    if (!server) {
+        server = setServerApiOnLoaclStorage(SERVER_2);
+    }
+    return server;
+}
+
+function getServerApiOnLoaclStorage() {
+    return JSON.parse(localStorage.getItem('server'));
+}
+
+function setServerApiOnLoaclStorage(server) {
+    localStorage.setItem('server', JSON.stringify(server));
+}
 // Event Listeners
 document.addEventListener("click", function (event) {
     if (!settingBtn.contains(event.target) && !settingContetn.contains(event.target) && !document.querySelector(".setting-content span").contains(event.target) && !document.querySelector("input").contains(event.target)) {
@@ -105,8 +92,7 @@ document.addEventListener("click", function (event) {
 });
 twittrBtn.addEventListener('click', tweetQuote);
 newQuoteBtn.addEventListener('click', (e) => {
-    console.log(e);
-    getQuotes(Application.getServerApiOnLoaclStorage());
+    getQuotes(getServerApiOnLoaclStorage());
 });
 settingBtn.addEventListener('click', (event) => {
     settingContetn.classList.toggle('hidden');
@@ -115,14 +101,14 @@ radios.forEach(radio => {
     radio.addEventListener('change', () => {
         if (radio.checked) {
             if (radio.id === SERVER_1.id) {
-                app.setAppServerApi(SERVER_1);
+                setServerApiOnLoaclStorage(SERVER_1);
             }
             else if (radio.id === SERVER_2.id) {
-                app.setAppServerApi(SERVER_2);
+                setServerApiOnLoaclStorage(SERVER_2);
             }
         }
     });
 });
 // End Event Listeners
-getQuotes(Application.getServerApiOnLoaclStorage());
-document.getElementById(app.getAppServerApi().id).checked = true;
+getQuotes(checkLocalStorage());
+document.getElementById(getServerApiOnLoaclStorage().id).checked = true;
