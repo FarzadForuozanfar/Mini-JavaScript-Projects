@@ -1,0 +1,46 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f2f3;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0px;
+    font-size: 40px;
+}
+
+.loader {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+
+.loader img{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img-container{
+    margin: 10px 30% ;
+}
+
+.img-container img{
+    margin: 5px 0px;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    h1{
+        font-size: 20px
+    }
+    .img-container{
+        margin: 10px;
+    }
+}
