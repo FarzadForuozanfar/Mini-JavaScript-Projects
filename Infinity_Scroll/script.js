@@ -6,7 +6,7 @@ let imagesLoaded = 0;
 let totalImages = 0;
 let photosArray = [];
 
-function displayPhotos() {
+const displayPhotos = () => {
     imagesLoaded = 0;
     totalImages += photosArray.length;
     photosArray.forEach((photo) => {
@@ -19,7 +19,7 @@ function displayPhotos() {
     });
 }
 
-function imageLoaded(){
+const imageLoaded = () => {
     imagesLoaded++;
     if (imagesLoaded === totalImages){
         ready = true;
@@ -27,14 +27,14 @@ function imageLoaded(){
 }
 
 // API configs
-const count = 10;
+const count = 30;
 const apiKey = 'sMaWIssf7NN4nApC-Dj6VH9p_oJZMzMQFe4PUg_qZ1k';
 const apiUrl = `https://api.unsplash.com/photos/random/?count=${count}`;
 const headers = {
     'Authorization': `Client-ID ${apiKey}`
 };
 
-function getPhotos() {
+const getPhotos = () => {
     fetch(apiUrl, {
         method: 'GET',
         headers: headers
