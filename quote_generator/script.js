@@ -57,7 +57,7 @@ function getQuotes(server) {
         .catch(err => {
             setTimeout(() => {
                 getQuotes(server);
-            }, 2000);
+            }, 5000);
             console.error(err);
             alert(err);
         });
