@@ -2,6 +2,26 @@
 
 @import url("https://fonts.googleapis.com/css?family=Spartan:400,700&display=swap");
 
+:root {
+  --primary-color: #858585;
+  --body-bg-color: #c9ced3;
+  --progress-bg-color: #fff;
+  --progress-color: #242323;
+  --icon-color: #818181;
+  --box-shadow:#00000080;
+  --text: #161616;
+}
+
+[data-theme="dark"] {
+  --primary-color: #f31b1b;
+  --body-bg-color: #353535;
+  --progress-bg-color: #00000080;
+  --progress-color: #d1d1d1;  
+  --icon-color: #e5e4e4;
+  --box-shadow: #ffffff20;
+  --text: #e3e3e3;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -9,7 +29,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: #c9ced3;
+  background: var(--body-bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,9 +40,9 @@ body {
 .player-container {
   height: 500px;
   width: 400px;
-  background: #e7e7e7;
+  background: var(--body-bg-color);
   border-radius: 20px;
-  box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px 5px var(--box-shadow);
 }
 
 .img-container {
@@ -39,7 +59,7 @@ body {
   width: 300px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 30px 5px var(--box-shadow);
 }
 
 h2 {
@@ -57,7 +77,7 @@ h3 {
 
 /* Progress */
 .progress-container {
-  background: #fff;
+  background: var(--progress-bg-color);
   border-radius: 5px;
   cursor: pointer;
   margin: 40px 20px;
@@ -66,7 +86,7 @@ h3 {
 }
 
 .progress {
-  background: #242323;
+  background: var(--progress-color);
   border-radius: 5px;
   height: 100%;
   width: 0%;
@@ -98,7 +118,7 @@ h3 {
 
 .fas {
   font-size: 30px;
-  color: #818181;
+  color: var(--icon-color);
   cursor: pointer;
   user-select: none;
 }
@@ -116,6 +136,80 @@ h3 {
   position: relative;
   top: 3px;
   margin: 0px 30px;
+}
+
+h2, h3, span{
+  color: var(--text) !important;
+}
+
+/* Dark Mode Toggle */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  position: fixed;
+  right: 25px;
+  top: 30px;
+}
+
+.theme-switch-wrapper span {
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background: #858585;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider::before {
+  background: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background: var(--primary-color);
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+#toggle-icon{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (max-width: 410px) {

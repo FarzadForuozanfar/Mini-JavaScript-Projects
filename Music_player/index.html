@@ -9,10 +9,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Dark Mode Switch -->
+    <div class="theme-switch-wrapper">
+        <span id="toggle-icon">
+            <span class="toggle-text">Light Mode</span>
+            <i class="fas fa-sun"></i>
+        </span>
+        <label class="theme-switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+        </label>
+   </div>
     <div class="player-container">
         <!-- Song -->
         <div class="img-container">
-            <img src="images/Pirates-of-the-Caribbean.jpg" alt="Album Art">
+            <img src="" alt="Album Art">
         </div>
         <h2 id="title"></h2>
         <h3 id="artist"></h3>
@@ -22,7 +33,7 @@
             <div class="progress" id="progress"></div>
             <div class="duration-wrapper">
                 <span id="current-time">0:00</span>
-                <span id="duration">2:21</span>
+                <span id="duration">5:07</span>
             </div>
         </div>
         <!-- Controls -->

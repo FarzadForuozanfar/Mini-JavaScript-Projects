@@ -10,6 +10,8 @@ const progressContainer = document.querySelector('#progress-container');
 const progress = document.querySelector('#progress');
 const currentTimeEl = document.querySelector('#current-time');
 const durationEl = document.querySelector('#duration');
+const toggleSwitch = document.querySelector("input[type='checkbox']");
+const toggleIcon = document.getElementById('toggle-icon');
 
 // variables
 let isPlaynig = false;
@@ -110,6 +112,17 @@ const setProgressBar = (event) => {
     const { duration } = audioElement;
     audioElement.currentTime = (clickX / width) * duration;
 }
+
+const darkMode = () => {
+    toggleIcon.children[0].textContent = 'Dark Mode';
+    toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+}
+
+const lightMode = () => {
+    toggleIcon.children[0].textContent = 'Light Mode';
+    toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+}
+
 // End Functions
 
 // Event Listeners
@@ -119,5 +132,26 @@ nextBtn.addEventListener('click', nextMusic);
 audioElement.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
 audioElement.addEventListener('ended', nextMusic);
+toggleSwitch.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        darkMode();
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        lightMode();
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+  document.documentElement.setAttribute('data-theme', currentTheme);
+
+  if (currentTheme === 'dark') {
+    toggleSwitch.checked = true;
+    darkMode();
+  }
+}
 
 loadMusic(musics[currentMusicIndex]);
