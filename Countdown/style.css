@@ -206,7 +206,7 @@ li span {
 
 @media screen and (max-width: 400px) {
   .countdown > ul > li > span{
-    font-size: 20px;
+    font-size: 20px !important;
   }
 
   .countdown{
