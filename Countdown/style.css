@@ -157,7 +157,7 @@ li span {
 @media screen and (max-width: 600px) {
   video {
     object-fit: cover;
-    object-position: 70%;
+    object-position: 50%;
     margin-top: -1px;
   }
 
@@ -201,5 +201,30 @@ li span {
 
   li span {
     font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .countdown > ul > li > span{
+    font-size: 20px;
+  }
+
+  .countdown{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  ul{
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0px;
+  }
+
+  .countdown > ul > li{
+    padding: 0px;
   }
 }
