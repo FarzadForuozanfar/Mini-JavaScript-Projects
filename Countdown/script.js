@@ -25,6 +25,17 @@ const day = hour * 24;
 const today = new Date().toISOString().split('T')[0];
 dateEl.setAttribute('min', today);
 
+const hiddenElement = (element, hidden) => {
+  if (hidden){
+    element.hidden = true;
+    element.style.display = 'none';
+  }
+  else{
+    element.hidden = false;
+    element.style.display = 'block';
+  }
+}
+
 const updateDOM = () => {
   countdownActive = setInterval(() => {
     const now = new Date().getTime();
@@ -34,21 +45,21 @@ const updateDOM = () => {
     const minutes = Math.floor((distance % hour) / minute);
     const seconds = Math.floor((distance % minute) / second);
 
-    inputContainer.hidden = true;
+    hiddenElement(inputContainer, true);
 
     if (distance < 0) {
-      countdownEl.hidden = true;
+      hiddenElement(countdownEl, true);
       clearInterval(countdownActive);
       completeElInfo.textContent = `${countdownTitle} finished on ${countdownDate}`;
-      completeEl.hidden = false;
+      hiddenElement(completeEl, false);
     } else {
       countdownElTitle.textContent = `${countdownTitle}`;
       timeElements[0].textContent = `${days}`;
       timeElements[1].textContent = `${hours}`;
       timeElements[2].textContent = `${minutes}`;
       timeElements[3].textContent = `${seconds}`;
-      completeEl.hidden = true;
-      countdownEl.hidden = false;
+      hiddenElement(completeEl, true);
+      hiddenElement(countdownEl, false)
     }
   }, second);
 }
@@ -73,10 +84,9 @@ const updateCountdown = (event) => {
 }
 
 const reset = () => {
-  countdownEl.hidden = true;
-  completeEl.hidden = true;
-  inputContainer.hidden = false;
-
+  hiddenElement(countdownEl, true);
+  hiddenElement(completeEl, true);
+  hiddenElement(inputContainer, false);
   clearInterval(countdownActive);
 
   countdownTitle = '';
@@ -87,7 +97,7 @@ const reset = () => {
 const restorePreviousCountdown = () => {
   const cacheCountdown = localStorage.getItem('countdown');
   if (cacheCountdown) {
-    inputContainer.hidden = true;
+    hiddenElement(inputContainer, true);
     savedCountdown = JSON.parse(cacheCountdown);
     countdownTitle = savedCountdown.title;
     countdownDate = savedCountdown.date;

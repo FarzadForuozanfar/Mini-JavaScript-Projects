@@ -211,9 +211,6 @@ li span {
 
   .countdown{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
   ul{
@@ -226,5 +223,10 @@ li span {
 
   .countdown > ul > li{
     padding: 0px;
+  }
+
+  .countdown button{
+    position: absolute;
+    bottom: 15px;
   }
 }
