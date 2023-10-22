@@ -76,6 +76,7 @@ body {
 }
 
 .btn {
+    user-select: none;
     border-radius: 8px;
     border: none;
     outline: none;
@@ -147,6 +148,14 @@ p{
     }
     .secondary-text{
         font-size: 1.7rem !important;
+    }
+    
+    .fas{
+        font-size: 1.3rem;
+    }
+
+    .toggle-siwtch-container span{
+        width: 90px;
     }
 }
 
