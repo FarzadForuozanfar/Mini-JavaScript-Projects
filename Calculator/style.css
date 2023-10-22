@@ -122,12 +122,13 @@ p{
     opacity: 0.5;
 }
 
-.btn:active{
-    top: 2px;
+.btn:hover{
+    transform: translateY(-2px);
+    filter:brightness(var(--brightness));
 }
 
-.btn:hover{
-    filter:brightness(var(--brightness));
+.btn:active{
+    transform: translateY(3px);
 }
 
 .secondary-text{
