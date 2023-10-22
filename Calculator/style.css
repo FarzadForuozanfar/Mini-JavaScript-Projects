@@ -76,7 +76,7 @@ body {
 }
 
 .btn {
-    user-select: none;
+    user-select: none !important;
     border-radius: 8px;
     border: none;
     outline: none;
