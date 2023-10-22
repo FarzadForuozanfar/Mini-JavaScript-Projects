@@ -14,7 +14,14 @@ const calculate = {
     '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
     '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
     '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+    '%': (firstNumber, secondNumber) => firstNumber / 100,
     '=': (firstNumber, secondNumber) => secondNumber,
+}
+
+const deleteChar = () => {
+    let displayContent = calculatorDisplay.textContent.replaceAll(",", "");
+    calculatorDisplay.textContent = Number(displayContent.slice(0, -1)).toLocaleString();
+    historyDisplay.textContent = Number(displayContent.slice(0, -1));
 }
 
 const hasMoreThanOneOperator = () => {
@@ -33,13 +40,14 @@ const hasMoreThanOneOperator = () => {
 
 const useOperator = (operator, content) => {
     const currentValue = Number(calculatorDisplay.textContent);
+    let result = null;
 
     if (content === '_'){
         content = '-';
     }
 
     if (operatorValue && awaitingNextValue) {
-        if (operatorValue === '='){
+        if (operatorValue === '=' || Number(historyDisplay.textContent)){
             historyDisplay.textContent = historyDisplay.textContent + ' ' + content + ' ';
         }
         else{
@@ -54,13 +62,17 @@ const useOperator = (operator, content) => {
     } else {
         const calculation = calculate[operatorValue](firstValue, currentValue);
         firstValue = calculation;
-        calculatorDisplay.textContent = calculation;
+        result = calculation;
+        
+        calculatorDisplay.textContent = Number(calculation).toLocaleString();
     }
 
     historyDisplay.textContent += ' ' + content + ' ';
 
-    if (hasMoreThanOneOperator() || operator === '='){
-        historyDisplay.textContent = calculatorDisplay.textContent;
+    if (operator === '='){
+        historyDisplay.textContent = result;
+    } else if(hasMoreThanOneOperator()){
+        historyDisplay.textContent = result + ' ' + content;
     }
 
     awaitingNextValue = true;
@@ -128,6 +140,8 @@ clearBtn.addEventListener('click', resetAll);
 inputBtns.forEach((inputBtn) => {
     if (inputBtn.classList.length === 1 && inputBtn.className === 'btn' || inputBtn.className === 'btn zero') {
         inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value));
+    } else if (inputBtn.value === 'backspace') {
+        inputBtn.addEventListener('click', deleteChar);
     } else if (inputBtn.classList.contains('operator')) {
         inputBtn.addEventListener('click', () => useOperator(inputBtn.value, inputBtn.textContent));
     } else if (inputBtn.classList.contains('decimal')) {
