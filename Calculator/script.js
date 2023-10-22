@@ -1,19 +1,110 @@
 const lightBtn = document.querySelector('.fa-sun');
 const darkBtn = document.querySelector('.fa-moon');
+const calculatorDisplay = document.querySelector('h1');
+const inputBtns = document.querySelectorAll('.btn');
+const clearBtn = document.getElementById('clear-btn');
+const historyDisplay = document.querySelector('.history');
 
-const setTheme = (theme)=> {
+let firstValue = 0;
+let operatorValue = null;
+let awaitingNextValue = false;
+
+const calculate = {
+    '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+    '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+    '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+    '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+    '=': (firstNumber, secondNumber) => secondNumber,
+}
+
+const hasMoreThanOneOperator = () => {
+    const str = historyDisplay.textContent;
+    const operators = ['+', '-', '÷', '×'];
+    let count = 0;
+
+    for (let i = 0; i <= str.length; i++) {
+        if (operators.includes(str[i])) {
+            count++;
+        }
+   }
+
+    return (count > 1);
+}
+
+const useOperator = (operator, content) => {
+    const currentValue = Number(calculatorDisplay.textContent);
+
+    if (content === '_'){
+        content = '-';
+    }
+
+    if (operatorValue && awaitingNextValue) {
+        if (operatorValue === '='){
+            historyDisplay.textContent = historyDisplay.textContent + ' ' + content + ' ';
+        }
+        else{
+            historyDisplay.textContent = historyDisplay.textContent.slice(0, -2) + content + ' ';
+        }
+        operatorValue = operator;
+        return;
+    }
+
+    if (!firstValue) {
+        firstValue = currentValue;
+    } else {
+        const calculation = calculate[operatorValue](firstValue, currentValue);
+        firstValue = calculation;
+        calculatorDisplay.textContent = calculation;
+    }
+
+    historyDisplay.textContent += ' ' + content + ' ';
+
+    if (hasMoreThanOneOperator() || operator === '='){
+        historyDisplay.textContent = calculatorDisplay.textContent;
+    }
+
+    awaitingNextValue = true;
+    operatorValue = operator;
+
+}
+
+const resetAll = () => {
+    historyDisplay.textContent = '';
+    calculatorDisplay.textContent = '0';
+    firstValue = 0;
+    operatorValue = null;
+    awaitingNextValue = false;
+}
+
+const addDecimal = () => {
+    if (awaitingNextValue) return;
+    if (!calculatorDisplay.textContent.includes('.')) {
+        calculatorDisplay.textContent += '.';
+    }
+}
+
+const sendNumberValue = (number) => {
+    if (awaitingNextValue) {
+        calculatorDisplay.textContent = number;
+        awaitingNextValue = false;
+    } else {
+        const displayValue = calculatorDisplay.textContent;
+        calculatorDisplay.textContent = displayValue === '0' ? number : displayValue + number;
+    }
+
+    if (historyDisplay.textContent === '0'){
+        historyDisplay.textContent = number;
+        return;
+    }
+    historyDisplay.textContent += number;
+}
+
+const setTheme = (theme) => {
     localStorage.setItem('theme', theme);
 }
 
 const getTheme = () => {
-    const cache = localStorage.getItem('theme');
-    if (cache){
-        return cache;
-    } 
-
-    setTheme('light');
-
-    return 'light';
+    return localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark';
 }
 
 const lightMood = () => {
@@ -30,7 +121,25 @@ const darkMood = () => {
     darkBtn.classList.remove('diactive');
 }
 
-let theme = getTheme();
-
 lightBtn.addEventListener('click', lightMood);
 darkBtn.addEventListener('click', darkMood);
+clearBtn.addEventListener('click', resetAll);
+
+inputBtns.forEach((inputBtn) => {
+    if (inputBtn.classList.length === 1 && inputBtn.className === 'btn' || inputBtn.className === 'btn zero') {
+        inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value));
+    } else if (inputBtn.classList.contains('operator')) {
+        inputBtn.addEventListener('click', () => useOperator(inputBtn.value, inputBtn.textContent));
+    } else if (inputBtn.classList.contains('decimal')) {
+        inputBtn.addEventListener('click', () => addDecimal());
+    }
+
+});
+
+let theme = getTheme();
+
+if (theme == 'dark') {
+    darkMood();
+} else {
+    lightMood();
+}

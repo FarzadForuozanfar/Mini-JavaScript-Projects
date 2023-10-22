@@ -22,7 +22,25 @@
     --brightness: 190%;
 }
 
-html, *{
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+html,
+* {
     box-sizing: border-box !important;
 }
 
@@ -38,6 +56,7 @@ body {
 .container {
     min-width: 200px;
     max-width: 250px;
+    min-height: 414px;
     box-shadow: 1px 2px 3px 4px var(--box-shadow);
     border-radius: 8px;
 }
@@ -59,7 +78,7 @@ body {
     width: 100%;
 }
 
-.toggle-siwtch-container span{
+.toggle-siwtch-container span {
     width: 60px;
     background-color: var(--primary-bg-color);
     border-radius: 7px;
@@ -69,7 +88,7 @@ body {
     margin-top: 5px;
 }
 
-.fas{
+.fas {
     font-size: smaller;
     color: var(--primary-color);
     cursor: pointer;
@@ -92,11 +111,11 @@ body {
     transition: top 0.3s ease-in, filter 0.2s ease-in;
 }
 
-.third-text{
+.third-text {
     color: var(--third-color);
 }
 
-input{
+h1 {
     border: none;
     outline: none;
     text-align: right;
@@ -106,56 +125,56 @@ input{
     padding-right: 14px;
     background-color: transparent;
     color: var(--text);
+    overflow-x: auto;
 }
 
-input:focus{
-    outline: none;
-}
-
-p{
+p {
     text-align: right;
     padding-right: 14px;
     color: var(--text);
+    min-height: 18px;
 }
 
-.diactive{
+.diactive {
     opacity: 0.5;
 }
 
-.btn:hover{
+.btn:hover {
     transform: translateY(-2px);
-    filter:brightness(var(--brightness));
+    filter: brightness(var(--brightness));
 }
 
-.btn:active{
+.btn:active {
     transform: translateY(3px);
 }
 
-.secondary-text{
+.secondary-text {
     color: var(--secondary-color) !important;
     font-size: 1.5rem !important;
 }
 
 @media screen and (max-width: 430px) {
-    .container{
+    .container {
         width: 90%;
         min-width: 90%;
         max-width: 90%;
     }
+
     .btn {
         width: 75px;
         height: 75px;
         font-size: 1.6rem !important;
     }
-    .secondary-text{
+
+    .secondary-text {
         font-size: 1.7rem !important;
     }
-    
-    .fas{
+
+    .fas {
         font-size: 1.3rem;
     }
 
-    .toggle-siwtch-container span{
+    .toggle-siwtch-container span {
         width: 90px;
     }
 }
@@ -176,7 +195,7 @@ p{
     }
 }
 
-.zero{
+.zero {
     grid-column: 1 / span 2;
     width: 100%;
 }
