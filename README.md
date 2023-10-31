@@ -14,23 +14,25 @@ A collection of mini JavaScript projects to enhance your coding skills and explo
 1. **Project 1**: Calculator
    - Description: simple calculator have dark|light mode and history calculation, full respnsive for all devices
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Calculator">Demo</a>
-   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/d81c2b40-65ea-4936-a018-a28f7c3ffdd4)
+   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/b50c6915-0435-47a7-8705-a7bc966e11a5)
    <br>
 2. **Project 2**: Countdown
    - Description: A date reminder with a countdown timer that saves the information in the browser's local storage
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Countdown">Demo</a>
-   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/0428c339-9059-440e-a770-47823f6bf1c3)
+   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/4bc3b92f-8a3a-4e67-92ec-e593b7b67ea1)
+
    <br>
 3. **Project 3**: Drag And Drop
    - Description: simple todo list with drag and drop option you can create && edit && delete your todos and auto save on local storage
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Drag_And_Drop">Demo</a>
-   - Preview: 
+   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/169b79e8-7ce9-4900-aeeb-6fea4544baf3)
+
    <br>
 4. **Project 4**: Infinity Scroll
    - Description: in Infinity Scroll project use unsplash image API when you reach bottom of page app requested another images from server and loaded on DOM
-   - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Infinity Scroll">Demo</a>
+   - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Infinity_Scroll">Demo</a>
    - Additional Notes: I used the free version and of course the daily request limit is included in this project
-   - Preview: 
+   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/319559fb-98f1-4163-9fad-ebd4d6643206)
    <br>
 5. **Project 5**: Joke Teller
    - Description: in this project you when ever you clicked on Tell Joke btn at first App make http request to geek-jokes server to get random string joke then make another http request to voiceRss server to give voice of joke and then with text plugin write joke and play voice 
