@@ -13,7 +13,7 @@ A collection of mini JavaScript projects to enhance your coding skills and explo
 
 1. **Project 1**: Calculator
    - Description: simple calculator have dark|light mode and history calculation, full respnsive for all devices
-   - <a target'_blank' href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Calculator">Demo</a>
+   - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Calculator">Demo</a>
    <br>
 2. **Project 2**: Countdown
    - Description: A date reminder with a countdown timer that saves the information in the browser's local storage
