@@ -1,6 +1,5 @@
 # Mini JavaScript Projects
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A collection of mini JavaScript projects to enhance your coding skills and explore different concepts in JavaScript.
 

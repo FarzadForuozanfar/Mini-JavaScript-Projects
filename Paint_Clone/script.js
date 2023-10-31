@@ -9,13 +9,15 @@ const clearCanvasBtn = document.getElementById('clear-canvas');
 const saveStorageBtn = document.getElementById('save-storage');
 const loadStorageBtn = document.getElementById('load-storage');
 const clearStorageBtn = document.getElementById('clear-storage');
+const topBar = document.querySelector('.top-bar');
 const downloadBtn = document.getElementById('download');
 const { body } = document;
 
-// Global Variables
 const canvas = document.createElement('canvas');
 canvas.id = 'canvas';
 const context = canvas.getContext('2d');
+
+// Global Variables
 let currentSize = 10;
 let bucketColor = '#FFFFFF';
 let currentColor = '#A51DAB';
@@ -24,7 +26,7 @@ let isMouseDown = false;
 let drawnArray = [];
 
 // Formatting Brush Size
-function displayBrushSize() {
+const displayBrushSize = () => {
   if (brushSlider.value < 10) {
     brushSize.textContent = `0${brushSlider.value}`;
   } else {
@@ -55,18 +57,26 @@ bucketColorBtn.addEventListener('change', () => {
 eraser.addEventListener('click', () => {
   isEraser = true;
   brushIcon.style.color = 'white';
+  brushIcon.style.backgroundColor = 'black';
+  brushIcon.title = 'Brush [Click To Select]';
   eraser.style.color = 'black';
+  eraser.style.backgroundColor = 'white';
+  eraser.title = 'Eraser [Selected]';
   activeToolEl.textContent = 'Eraser';
   currentColor = bucketColor;
   currentSize = 50;
 });
 
 // Switch back to Brush
-function switchToBrush() {
+const switchToBrush = () => {
   isEraser = false;
   activeToolEl.textContent = 'Brush';
   brushIcon.style.color = 'black';
+  brushIcon.style.backgroundColor = 'white';
+  brushIcon.title = 'Brush [Selected]';
   eraser.style.color = 'white';
+  eraser.style.backgroundColor = 'black';
+  eraser.title = 'Eraser [Click To Select]';
   currentColor = `#${brushColorBtn.value}`;
   currentSize = 10;
   brushSlider.value = 10;
@@ -74,9 +84,9 @@ function switchToBrush() {
 }
 
 // Create Canvas
-function createCanvas() {
+const createCanvas = () => {
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight - 50;
+  canvas.height = window.innerHeight - topBar.offsetHeight;
   context.fillStyle = bucketColor;
   context.fillRect(0, 0, canvas.width, canvas.height);
   body.appendChild(canvas);
@@ -93,7 +103,7 @@ clearCanvasBtn.addEventListener('click', () => {
 });
 
 // Draw what is stored in DrawnArray
-function restoreCanvas() {
+const restoreCanvas = () => {
   for (let i = 1; i < drawnArray.length; i++) {
     context.beginPath();
     context.moveTo(drawnArray[i - 1].x, drawnArray[i - 1].y);
@@ -110,7 +120,7 @@ function restoreCanvas() {
 }
 
 // Store Drawn Lines in DrawnArray
-function storeDrawn(x, y, size, color, erase) {
+const storeDrawn = (x, y, size, color, erase) => {
   const line = {
     x,
     y,
@@ -122,7 +132,7 @@ function storeDrawn(x, y, size, color, erase) {
 }
 
 // Get Mouse Position
-function getMousePosition(event) {
+const getMousePosition = (event) => {
   const boundaries = canvas.getBoundingClientRect();
   return {
     x: event.clientX - boundaries.left,
@@ -203,7 +213,6 @@ downloadBtn.addEventListener('click', () => {
   setTimeout(switchToBrush, 1500);
 });
 
-// Event Listener
 brushIcon.addEventListener('click', switchToBrush);
 
 // On Load
