@@ -1,6 +1,5 @@
 # Mini JavaScript Projects
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A collection of mini JavaScript projects to enhance your coding skills and explore different concepts in JavaScript.
 
@@ -10,28 +9,20 @@ A collection of mini JavaScript projects to enhance your coding skills and explo
 - CSS
 - JavaScript
 
-## Project Previews
-
-Include screenshots or GIFs showcasing some of your mini JavaScript projects here.
-
 ## Project Directory
 
-1. **Project 1**: [Project Name]
-   - Description: [Brief description of the project's purpose and features]
-   - Demo: [Link to a live demo if available]
-   - Technologies Used: [List the specific technologies used in this project]
+1. **Project 1**: Calculator
+   - Description: simple calculator have dark|light mode and history calculation, full respnsive for all devices
+   - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Calculator">Demo</a>
+   <br>
+2. **Project 2**: Countdown
+   - Description: A date reminder with a countdown timer that saves the information in the browser's local storage
+   - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Calculator">Demo</a>
    - Additional Notes: [Any additional information or notable points about the project]
-
-2. **Project 2**: [Project Name]
-   - Description: [Brief description of the project's purpose and features]
-   - Demo: [Link to a live demo if available]
-   - Technologies Used: [List the specific technologies used in this project]
-   - Additional Notes: [Any additional information or notable points about the project]
-
+   <br>
 3. **Project 3**: [Project Name]
    - Description: [Brief description of the project's purpose and features]
-   - Demo: [Link to a live demo if available]
-   - Technologies Used: [List the specific technologies used in this project]
+   - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Calculator">Demo</a>
    - Additional Notes: [Any additional information or notable points about the project]
 
 ## Getting Started
