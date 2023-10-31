@@ -48,15 +48,15 @@ A collection of mini JavaScript projects to enhance your coding skills and explo
    - Description: A Simple App for share your entire screen and see on small window your selection tab
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Picture_In_Picture">Demo</a>
    <br>
-10. **Project 10**: Pong
+1. **Project 10**: Pong
    - Description: simple pong game with canvas js that you can move your rocket with mouse in PC or Laptop and for others by click
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Pong">Demo</a>
    <br>
-11. **Project 11**: Video Player
+1. **Project 11**: Video Player
    - Description: In this App you can volume up/down and increase or decrease video play ratio and full screen your video
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/VideoPlayer">Demo</a>
    <br>
-12. **Project 12**: Quote Generator
+1. **Project 12**: Quote Generator
    - Description: a simple quote generator that you can choose 2 diffrent server that saved each of time on localStorage 
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/quote_generator">Demo</a>
    <br>
