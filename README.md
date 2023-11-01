@@ -40,8 +40,8 @@ A collection of mini JavaScript projects to enhance your coding skills and explo
    - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/1805eb84-669f-4ad3-84ec-4eb13038fe0b)
 
    <br>
-6. **Project 6**: Light|Dark Mode
-   - Description: simple landing website with dark|light mode option that seved on localStorage with custom css theme
+6. **Project 6**: Light Dark Mode
+   - Description: simple landing website with dark-light mode option that seved on localStorage with custom css theme
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Light_Dark_Mode">Demo</a>
    - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/1270f580-ba58-461f-9494-a9ad8540dfdc)
 
