@@ -326,6 +326,10 @@ input:checked + .slider::before {
 }
 
 @media screen and (max-width: 410px) {
+  .playlist-container {
+    top: 90px;
+    right: -20px;
+  }
   .img-container{
     height: 230px;
   }
@@ -344,10 +348,24 @@ input:checked + .slider::before {
   }
 }
 
-/* Media Query: iPhone (Vertical) */
 @media screen and (max-width: 356px) {
   .player-container {
     width: 96vw;
+    margin-top: 80px;
+  }
+
+  .playlist-container {
+    top: 70px;
+    right: 0px;
+    width: 280px;
+  }
+
+  .playlist-container .music{
+    width: 270px;
+  }
+
+  .theme-switch-wrapper {
+    top: 5px;
   }
 
   .img-container{
@@ -369,13 +387,13 @@ input:checked + .slider::before {
 }
 
  /* Music Wave */
- body .sound-wave {
+.sound-wave {
   height: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body .bar {
+.bar {
   animation-name: wave-lg;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
@@ -385,10 +403,10 @@ body .bar {
   height: 10px;
   width: 4px;
 }
-body .bar:nth-child(-n+7), body .bar:nth-last-child(-n+7) {
+.bar:nth-child(-n+7), .bar:nth-last-child(-n+7) {
   animation-name: wave-md;
 }
-body .bar:nth-child(-n+3), body .bar:nth-last-child(-n+3) {
+.bar:nth-child(-n+3), .bar:nth-last-child(-n+3) {
   animation-name: wave-sm;
 }
 
