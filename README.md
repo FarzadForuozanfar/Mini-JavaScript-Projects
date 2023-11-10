@@ -49,7 +49,7 @@ A collection of mini JavaScript projects to enhance your coding skills and explo
 7. **Project 7**: Music Player
    - Description: A Custom Music player with Nice UI and have Dark|Light mode features 
    - <a href="https://farzadforuozanfar.github.io/Mini-JavaScript-Projects/Music_player">Demo</a>
-   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/53f6e5e5-91e9-430c-9a37-50ffe8870bf5)
+   - Preview: ![image](https://github.com/FarzadForuozanfar/Mini-JavaScript-Projects/assets/91725214/91f1b8ca-c27d-430f-b431-c9497431ae81)
 
    <br>
 8. **Project 8**: Paint Clone
